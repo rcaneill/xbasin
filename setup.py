@@ -9,7 +9,6 @@ AUTHOR_EMAIL = "romain.caneill@gu.se"
 URL = "https://github.com/rcaneill/xbasin"
 #CLASSIFIERS =
 INSTALL_REQUIRES = ["xarray", "dask", "numpy", "xgcm"]
-DEPENDENCY_LINKS = ["https://github.com/rcaneill/xnemogcm.git@master"]
 
 DESCRIPTION = "Interface to open NEMO global circulation model output dataset and create a xgcm grid."
 
@@ -28,7 +27,6 @@ setup(
     description=DESCRIPTION,
     long_description=readme(),
     install_requires=INSTALL_REQUIRES,
-    dependency_links=DEPENDENCY_LINKS
     url=URL,
     packages=[DISTNAME],
 )
