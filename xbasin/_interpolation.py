@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def _bisect(a, x):
     """
     
@@ -7,12 +8,15 @@ def _bisect(a, x):
     hi = len(a)
     lo = 0
     while lo < hi:
-        mid = (lo+hi)//2
-        if x < a[mid]: hi = mid
-        else: lo = mid+1
-    return lo-1
+        mid = (lo + hi) // 2
+        if x < a[mid]:
+            hi = mid
+        else:
+            lo = mid + 1
+    return lo - 1
 
-#pythran export interp_new_vertical_from_fortran_pythran(float32[][][] or float64[][][], float32[][][] or float64[][][], float32[][][][] or float64[][][][])
+
+# pythran export interp_new_vertical_from_fortran_pythran(float32[][][] or float64[][][], float32[][][] or float64[][][], float32[][][][] or float64[][][][])
 def interp_new_vertical(z_old, z_new, V_old):
     """
       !========================================
@@ -31,7 +35,7 @@ def interp_new_vertical(z_old, z_new, V_old):
     (jpk_new, jpj, jpi) = z_new.shape
     (jpk_old, jpj, jpi, jpt) = V_old.shape
     V_new = np.empty((jpk_new, jpj, jpi, jpt))
-    #omp parallel for collapse(3)
+    # omp parallel for collapse(3)
     for ji in range(jpi):
         for jj in range(jpj):
             for jk in range(jpk_new):
@@ -40,10 +44,10 @@ def interp_new_vertical(z_old, z_new, V_old):
                     # outside of the range: above the surface, fill with the first value of V
                     for jt in range(jpt):
                         V_new[jk, jj, ji, jt] = V_old[0, jj, ji, jt]
-                elif z_new[jk, jj, ji] >= z_old[jpk_old-1, jj, ji]:
+                elif z_new[jk, jj, ji] >= z_old[jpk_old - 1, jj, ji]:
                     # outside of the range: below the bathymetry, fill with last value of V
                     for jt in range(jpt):
-                        V_new[jk, jj, ji, jt] = V_old[jpk_old-1, jj, ji, jt]
+                        V_new[jk, jj, ji, jt] = V_old[jpk_old - 1, jj, ji, jt]
                 else:
                     # Inside the range of the array => compute the interpolation
                     ind = _bisect(z_old[:, jj, ji], z_new[jk, jj, ji])
@@ -54,7 +58,11 @@ def interp_new_vertical(z_old, z_new, V_old):
                     else:
                         # Interpolation
                         for jt in range(jpt):
-                            V_new[jk, jj, ji, jt] = V_old[ind, jj, ji, jt] + ( z_new[jk, jj, ji] - z_old[ind, jj, ji] ) \
-                                * ( V_old[ind+1, jj, ji, jt] - V_old[ind, jj, ji, jt] ) \
-                                / ( z_old[ind+1, jj, ji    ] - z_old[ind, jj, ji    ] )
+                            V_new[jk, jj, ji, jt] = V_old[ind, jj, ji, jt] + (
+                                z_new[jk, jj, ji] - z_old[ind, jj, ji]
+                            ) * (
+                                V_old[ind + 1, jj, ji, jt] - V_old[ind, jj, ji, jt]
+                            ) / (
+                                z_old[ind + 1, jj, ji] - z_old[ind, jj, ji]
+                            )
     return V_new

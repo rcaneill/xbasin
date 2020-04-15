@@ -9,24 +9,33 @@ For the moment will maybe only work with the NEMO output data
 => To be adapted to a general case later
 """
 
+
 def _add_dims(z_fr, z_to):
     dims_fr = set(z_fr.dims)
     dims_to = set(z_to.dims)
-    
+
     if dims_fr == dims_to:
         return (z_fr, z_to)
 
     # take all dims that are in z_to but not in z_fr
     for dim in dims_to - dims_fr:
-        z_fr = z_fr.expand_dims({dim:z_to[dim]})
+        z_fr = z_fr.expand_dims({dim: z_to[dim]})
     # take all dims that are in z_fr but not in z_to
     for dim in dims_fr - dims_to:
-        z_to = z_to.expand_dims({dim:z_fr[dim]})
+        z_to = z_to.expand_dims({dim: z_fr[dim]})
     return (z_fr, z_to)
 
 
-
-def remap_vertical(da, grid_fr, grid_to, axis='Z', scale_factor_fr=None, scale_factor_to=None, z_fr=None, z_to=None):
+def remap_vertical(
+    da,
+    grid_fr,
+    grid_to,
+    axis="Z",
+    scale_factor_fr=None,
+    scale_factor_to=None,
+    z_fr=None,
+    z_to=None,
+):
     """
     Interpolate the dataset on the new grid grid dept_1d, only for T point vars for the moment
 
@@ -56,25 +65,26 @@ def remap_vertical(da, grid_fr, grid_to, axis='Z', scale_factor_fr=None, scale_f
         )
 
     if z_fr is None:
-        z_fr=grid_fr._ds['gdepw_0']
+        z_fr = grid_fr._ds["gdepw_0"]
     if z_to is None:
-        z_to=grid_to._ds['gdepw_0']
+        z_to = grid_to._ds["gdepw_0"]
 
-    # backup order of coordinates of da (so we can transpose back to the same order in the end)
-    coord_da = da.coords
-        
     # add dimensions if necessary, so they match
     (z_fr, z_to) = _add_dims(z_fr, z_to)
-    
+
     ax = grid_fr.axes[axis]
     (position_fr, coord_nme_fr) = ax._get_axis_coord(da)  # e.g. ('center', 'z_c')
-    if position_fr != 'center':
-        raise(NotImplementedError("Only interpolation from T, U, and V points is possible for now"))
+    if position_fr != "center":
+        raise (
+            NotImplementedError(
+                "Only interpolation from T, U, and V points is possible for now"
+            )
+        )
 
-    #pos_nme_fr = xgcm_tools.mtc_nme(coord_nme_fr)  # e.g. 'z_c_pos'
+    # pos_nme_fr = xgcm_tools.mtc_nme(coord_nme_fr)  # e.g. 'z_c_pos'
     position_intermediate = ax._default_shifts[position_fr]  # e.g. 'left' W point
     coord_nme_intermediate = ax.coords[position_intermediate]  # e:g. 'z_f'
-    #pos_nme_intermediate = xgcm_tools.mtc_nme(coord_nme_intermediate)  # e.f. 'z_f_pos'
+    # pos_nme_intermediate = xgcm_tools.mtc_nme(coord_nme_intermediate)  # e.f. 'z_f_pos'
 
     ##############################
     #   Integration
@@ -95,20 +105,17 @@ def remap_vertical(da, grid_fr, grid_to, axis='Z', scale_factor_fr=None, scale_f
         position_fr=position_fr,
         position_to=position_intermediate,
     )
-    #print('*********', da_integrate.isel({'x_c':0,'y_c':0}))
+    # print('*********', da_integrate.isel({'x_c':0,'y_c':0}))
 
     ##############################
     #   Interpolation
     ##############################
     # interpolation : no position shifting                              # e.g. stay at 'left'
-    
+
     da_interpolate = interpolate(
-        da_fr=da_integrate,
-        z_fr=z_fr,
-        z_to=z_to,
-        coord_nme=coord_nme_intermediate,
+        da_fr=da_integrate, z_fr=z_fr, z_to=z_to, coord_nme=coord_nme_intermediate,
     )
-    #print('*********', da_interpolate.isel({'x_c':0,'y_c':0}))
+    # print('*********', da_interpolate.isel({'x_c':0,'y_c':0}))
 
     ##############################
     # Derivation
@@ -123,7 +130,7 @@ def remap_vertical(da, grid_fr, grid_to, axis='Z', scale_factor_fr=None, scale_f
     """
     # scale_factor = grid_to._ds[e3t_0]
     # here positions will be inverted because we go back on the initial position
-    #print('------', scale_factor.isel({'x_c':0,'y_c':0}))
+    # print('------', scale_factor.isel({'x_c':0,'y_c':0}))
     da_derivative = derivative(
         da=da_interpolate,
         grid=grid_to,
@@ -133,13 +140,11 @@ def remap_vertical(da, grid_fr, grid_to, axis='Z', scale_factor_fr=None, scale_f
         position_to=position_fr,
     )
     da_derivative.name = da.name
-    #print('!!!!!!!!',da_derivative.isel({'x_c':0,'y_c':0}))
-    return da_derivative.transpose(*coord_da, transpose_coords=False)
+    # print('!!!!!!!!',da_derivative.isel({'x_c':0,'y_c':0}))
+    return da_derivative.transpose(*da.dims, transpose_coords=False)
 
 
-def interpolate(
-        da_fr, z_fr, z_to, coord_nme
-):
+def interpolate(da_fr, z_fr, z_to, coord_nme):
     """
     Compute the linear interpolation of *da* on the new vertical coordinates.
 
@@ -178,11 +183,15 @@ def interpolate(
     dims_to.sort()
     # dims_fr and dims_to should be the same
     if dims_fr != dims_to:
-        raise(ValueError(f'The dimensions of the coordinates from and to should match. Got {dims_fr} and {dims_to}'))
+        raise (
+            ValueError(
+                f"The dimensions of the coordinates from and to should match. Got {dims_fr} and {dims_to}"
+            )
+        )
     # remove coord_nme from the dims
     dims_fr.remove(coord_nme)
-    dims_fr.insert(0, coord_nme)    
-    
+    dims_fr.insert(0, coord_nme)
+
     z_fr = z_fr.transpose(*dims_fr, transpose_coords=False)
     z_to = z_to.transpose(*dims_fr, transpose_coords=False)
 
@@ -238,10 +247,12 @@ def integrate(da, grid, scale_factor, axis, position_fr, position_to):
                 )
             )
         )
-    return grid.cumsum(da * scale_factor, axis, boundary=boundary, fill_value=fill_value)
+    return grid.cumsum(
+        da * scale_factor, axis, boundary=boundary, fill_value=fill_value
+    )
 
 
-def derivative(da, grid, scale_factor, axis, position_fr='left', position_to='center'):
+def derivative(da, grid, scale_factor, axis, position_fr="left", position_to="center"):
     """
     Take the derivative of *da* as a finite difference
     """
