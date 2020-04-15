@@ -1,7 +1,7 @@
 
 import xarray as xr
 import xgcm
-from . import remap_vertical
+from xbasin import remap_vertical
 import numpy as np
 import warnings
 
@@ -118,6 +118,17 @@ def test_T_0():
     _assert_same_integrated_value(v_fr, v_to, e3_fr=domcfg_fr.e3t_0, e3_to=domcfg_to.e3t_0)
 
 
+def create_depth_from_e3(domcfg, grid, point='T'):
+    depthw = grid.cumsum(domcfg.e3t_0, axis='Z', boundary='fill', fill_value=0)
+    depthuw = grid.cumsum(domcfg.e3u_0, axis='Z', boundary='fill', fill_value=0)
+    depthvw = grid.cumsum(domcfg.e3v_0, axis='Z', boundary='fill', fill_value=0)
+    depthfw = grid.cumsum(domcfg.e3f_0, axis='Z', boundary='fill', fill_value=0)
+    #
+    deptht = grid.cumsum(domcfg.e3w_0, axis='Z', boundary='fill', fill_value=0) - 0.5 * domcfg.e3w_0.isel({'z_f':0})
+    print(deptht)
+    print(np.abs((deptht - domcfg.gdept_0)[:,1:-1,1:-1]).max())
+    sdfg
+    
 def test_U_0():
     domcfg_fr = open_domcfg_fr()
     nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
@@ -127,8 +138,36 @@ def test_U_0():
     grid_fr = xgcm.Grid(domcfg_fr, periodic=False)
     grid_to = xgcm.Grid(domcfg_to, periodic=False)
     
-    v_fr = nemo_ds['uo']* 0 
-    v_to = remap_vertical(v_fr, grid_fr, grid_to, axis='Z', scale_factor_fr=domcfg_fr.e3u_0, scale_factor_to=domcfg_to.e3u_0)
+    v_fr = nemo_ds['uo']* 0
+    v_to = remap_vertical(v_fr, grid_fr, grid_to, axis='Z', scale_factor_fr=domcfg_fr.e3u_0, scale_factor_to=domcfg_to.e3u_0, z_fr=grid_fr.interp(domcfg_fr.gdepw_0, 'X', boundary='extend'), z_to=domcfg_to.gdepw_0.isel({'x_c':1,'y_c':1}).drop_vars(['x_c', 'y_c']))
+    _assert_same_integrated_value(v_fr, v_to, e3_fr=domcfg_fr.e3u_0, e3_to=domcfg_to.e3u_0)
+
+
+def test_U_1():
+    domcfg_fr = open_domcfg_fr()
+    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds.load()
+    domcfg_to = open_domcfg_to()
+    
+    grid_fr = xgcm.Grid(domcfg_fr, periodic=False)
+    grid_to = xgcm.Grid(domcfg_to, periodic=False)
+    
+    v_fr = nemo_ds['uo']* 1
+    v_to = remap_vertical(v_fr, grid_fr, grid_to, axis='Z', scale_factor_fr=domcfg_fr.e3u_0, scale_factor_to=domcfg_to.e3u_0, z_fr=grid_fr.interp(domcfg_fr.gdepw_0, 'X', boundary='extend'), z_to=domcfg_to.gdepw_0.isel({'x_c':1,'y_c':1}).drop_vars(['x_c', 'y_c']))
+    _assert_same_integrated_value(v_fr, v_to, e3_fr=domcfg_fr.e3u_0, e3_to=domcfg_to.e3u_0)
+
+
+def test_U():
+    domcfg_fr = open_domcfg_fr()
+    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds.load()
+    domcfg_to = open_domcfg_to()
+    
+    grid_fr = xgcm.Grid(domcfg_fr, periodic=False)
+    grid_to = xgcm.Grid(domcfg_to, periodic=False)
+    
+    v_fr = nemo_ds['uo']
+    v_to = remap_vertical(v_fr, grid_fr, grid_to, axis='Z', scale_factor_fr=domcfg_fr.e3u_0, scale_factor_to=domcfg_to.e3u_0, z_fr=grid_fr.interp(domcfg_fr.gdepw_0, 'X', boundary='extend'), z_to=domcfg_to.gdepw_0.isel({'x_c':1,'y_c':1}).drop_vars(['x_c', 'y_c']))
     _assert_same_integrated_value(v_fr, v_to, e3_fr=domcfg_fr.e3u_0, e3_to=domcfg_to.e3u_0)
 
 
