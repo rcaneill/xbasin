@@ -1,0 +1,18 @@
+Metadata-Version: 1.2
+Name: xbasin
+Version: 0.0.1
+Summary: TODO
+Home-page: https://github.com/rcaneill/xbasin
+Author: Romain Caneill
+Author-email: romain.caneill@gu.se
+License: MIT
+Description: # xbasin
+        Python package to compute diagnostics of idealized basin global circulation models. NEMO oriented for now. Deals with terrain-following coordinates.
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6

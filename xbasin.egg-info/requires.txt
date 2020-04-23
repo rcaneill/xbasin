@@ -1,0 +1,4 @@
+xarray
+dask
+numpy
+pythran>=0.9.5
