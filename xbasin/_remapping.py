@@ -4,9 +4,10 @@ import xarray as xr
 import numpy as np
 try:
     from .interpolation_compiled import interp_new_vertical
+    from ._interpolation import interp_new_vertical as interp_new_vertical_pure_python
 except ModuleNotFoundError:
     from ._interpolation import interp_new_vertical
-
+import warnings
 
 """
 For the moment will maybe only work with the NEMO output data
@@ -209,7 +210,13 @@ def interpolate(da_fr, z_fr, z_to, coord_nme):
         v_to = interp_new_vertical(z_fr.values, z_to.values, da_fr.values)
     except TypeError:
         # Pythran needs arrays in C order and not in Fortran order
-        v_to = interp_new_vertical(np.ascontiguousarray(z_fr.values), np.ascontiguousarray(z_to.values), np.ascontiguousarray(da_fr.values))
+        try:
+            v_to = interp_new_vertical(np.ascontiguousarray(z_fr.values), np.ascontiguousarray(z_to.values), np.ascontiguousarray(da_fr.values))
+        except TypeError as error:
+            # falls back on the pure python version
+            warnings.warn(f"Falling back to pure python implementation of the remapping function due to unsupported data type:\n{error}")
+            v_to = interp_new_vertical_pure_python(z_fr.values, z_to.values, da_fr.values)
+        
 
     # we create a new dataset containing the interpolated values
     # dropping all coordinates of da_fr that are not necessary
