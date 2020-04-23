@@ -2,7 +2,11 @@
 
 import xarray as xr
 import numpy as np
-from ._interpolation import interp_new_vertical
+try:
+    from .interpolation_compiled import interp_new_vertical
+except ModuleNotFoundError:
+    from ._interpolation import interp_new_vertical
+
 
 """
 For the moment will maybe only work with the NEMO output data
@@ -201,7 +205,11 @@ def interpolate(da_fr, z_fr, z_to, coord_nme):
     # We have the 3 necessary arrays:
     # z_fr, z_to, and da_fr
     # we interpolate
-    v_to = interp_new_vertical(z_fr.values, z_to.values, da_fr.values)
+    try:
+        v_to = interp_new_vertical(z_fr.values, z_to.values, da_fr.values)
+    except TypeError:
+        # Pythran needs arrays in C order and not in Fortran order
+        v_to = interp_new_vertical(np.ascontiguousarray(z_fr.values), np.ascontiguousarray(z_to.values), np.ascontiguousarray(da_fr.values))
 
     # we create a new dataset containing the interpolated values
     # dropping all coordinates of da_fr that are not necessary

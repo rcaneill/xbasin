@@ -158,6 +158,12 @@ def create_depth_from_e3(domcfg, grid, point="T"):
     sdfg
 
 
+def test_example():
+    # does things
+    a = 1
+    b = 2
+    assert a == b
+    
 def test_U_0():
     domcfg_fr = open_domcfg_fr()
     nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
