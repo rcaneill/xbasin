@@ -1,4 +1,0 @@
-xarray
-dask
-numpy
-xgcm
