@@ -2,6 +2,8 @@ README.md
 setup.py
 xbasin/__init__.py
 xbasin/_interpolation.cpp
+xbasin/_interpolation.py
+xbasin/_remapping.py
 xbasin.egg-info/PKG-INFO
 xbasin.egg-info/SOURCES.txt
 xbasin.egg-info/dependency_links.txt

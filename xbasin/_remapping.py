@@ -26,6 +26,24 @@ def _add_dims(z_fr, z_to):
     return (z_fr, z_to)
 
 
+def _compute_depth_of_shifted_array(grid, da, axis, e3=None):
+    # start to get the position of the data array
+    axe = grid.axes[axis]
+    (old_pos, old_dim) = axe._get_axis_coord(da)
+    new_pos = axe._default_shifts[old_pos]
+    if (old_pos in ['inner', 'outer']) or (new_pos in ['inner', 'outer']):
+        raise NotImplementedError(f"Only left, right and center points are possible for now, ({old_pos},{new_pos}) found as positions")
+    
+    new_dim = axe.coords[new_pos]
+    if e3 is None:
+        e3 = grid.get_metric(da, axes=axis)
+    depths = grid.cumsum(e3, axis='Z', boundary='fill', fill_value=0)
+    # If the shifted position is a center point, we need to remove half of the upper scale factor to get the depth
+    if new_pos == 'center':
+        depths -= e3.isel({old_dim:0}).drop_vars(old_dim)/2
+    return depths
+
+
 def remap_vertical(
     da,
     grid_fr,
@@ -65,9 +83,9 @@ def remap_vertical(
         )
 
     if z_fr is None:
-        z_fr = grid_fr._ds["gdepw_0"]
+        z_fr = _compute_depth_of_shifted_array(grid_fr, da, axis, e3=scale_factor_fr)
     if z_to is None:
-        z_to = grid_to._ds["gdepw_0"]
+        z_to = _compute_depth_of_shifted_array(grid_to, da, axis, e3=scale_factor_to)
 
     # add dimensions if necessary, so they match
     (z_fr, z_to) = _add_dims(z_fr, z_to)

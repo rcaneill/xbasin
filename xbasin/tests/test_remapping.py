@@ -113,8 +113,8 @@ def test_W_0_same_fr_and_to():
             grid_fr,
             grid_to,
             axis="Z",
-            scale_factor_fr=domcfg_fr.e3t_0,
-            scale_factor_to=domcfg_to.e3t_0,
+            scale_factor_fr=domcfg_fr.e3w_0,
+            scale_factor_to=domcfg_to.e3w_0,
         )
     except NotImplementedError:
         return 0
@@ -296,14 +296,15 @@ def test_T_theta():
         v_fr, v_to, e3_fr=domcfg_fr.e3t_0, e3_to=domcfg_to.e3t_0
     )
 
+    
 def test_T_theta_full_automatic():
     domcfg_fr = open_domcfg_fr()
     nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = open_domcfg_to()
     
-    grid_fr = xgcm.Grid(domcfg_fr, periodic=False)
-    grid_to = xgcm.Grid(domcfg_to, periodic=False)
+    grid_fr = xgcm.Grid(domcfg_fr, periodic=False, metrics=_metrics)
+    grid_to = xgcm.Grid(domcfg_to, periodic=False, metrics=_metrics)
     
     v_fr = nemo_ds['thetao'] * domcfg_fr.tmask
     v_to = remap_vertical(v_fr, grid_fr, grid_to, axis='Z', scale_factor_fr=domcfg_fr.e3t_0, scale_factor_to=domcfg_to.e3t_0)
@@ -311,6 +312,7 @@ def test_T_theta_full_automatic():
     _assert_same_integrated_value(v_fr, v_to_auto, e3_fr=domcfg_fr.e3t_0, e3_to=domcfg_to.e3t_0)
     _assert_same_domcfg(v_to, v_to_auto)
 
+    
 def test_T_1_same_fr_and_to():
     domcfg_fr = open_domcfg_fr()
 
