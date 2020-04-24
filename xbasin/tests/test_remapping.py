@@ -155,9 +155,9 @@ def create_depth_from_e3(domcfg, grid, point="T"):
     ) - 0.5 * domcfg.e3w_0.isel({"z_f": 0})
     print(deptht)
     print(np.abs((deptht - domcfg.gdept_0)[:, 1:-1, 1:-1]).max())
-    sdfg
+    
 
-
+    
 def test_U_0():
     domcfg_fr = open_domcfg_fr()
     nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")

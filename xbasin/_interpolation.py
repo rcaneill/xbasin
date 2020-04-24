@@ -16,7 +16,9 @@ def _bisect(a, x):
     return lo - 1
 
 
-# pythran export interp_new_vertical_from_fortran_pythran(float32[][][] or float64[][][], float32[][][] or float64[][][], float32[][][][] or float64[][][][])
+# pythran export interp_new_vertical(float32[][][] or float64[][][] or float128[][][],
+#                                    float32[][][] or float64[][][] or float128[][][],
+#                                    float32[][][][] or float64[][][][] or float128[][][][])
 def interp_new_vertical(z_old, z_new, V_old):
     """
       !========================================
