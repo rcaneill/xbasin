@@ -7,16 +7,16 @@ LICENSE = "MIT"
 AUTHOR = "Romain Caneill"
 AUTHOR_EMAIL = "romain.caneill@gu.se"
 URL = "https://github.com/rcaneill/xbasin"
-#CLASSIFIERS =
+# CLASSIFIERS =
 INSTALL_REQUIRES = ["xarray", "dask", "numpy", "xgcm"]
 
 DESCRIPTION = "Interface to open NEMO global circulation model output dataset and create a xgcm grid."
 
 
-
 def readme():
     with open("README.md") as f:
         return f.read()
+
 
 setup(
     name=DISTNAME,
@@ -30,4 +30,3 @@ setup(
     url=URL,
     packages=[DISTNAME],
 )
-
