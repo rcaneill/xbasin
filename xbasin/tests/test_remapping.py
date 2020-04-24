@@ -1,7 +1,7 @@
 
 import xarray as xr
 import xgcm
-from . import remap_vertical
+from xbasin import remap_vertical
 import numpy as np
 import warnings
 
@@ -172,6 +172,21 @@ def test_T_theta():
     v_to = remap_vertical(v_fr, grid_fr, grid_to, axis='Z', scale_factor_fr=domcfg_fr.e3t_0, scale_factor_to=domcfg_to.e3t_0)
     _assert_same_integrated_value(v_fr, v_to, e3_fr=domcfg_fr.e3t_0, e3_to=domcfg_to.e3t_0)
 
+
+def test_T_theta_full_automatic():
+    domcfg_fr = open_domcfg_fr()
+    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds.load()
+    domcfg_to = open_domcfg_to()
+    
+    grid_fr = xgcm.Grid(domcfg_fr, periodic=False)
+    grid_to = xgcm.Grid(domcfg_to, periodic=False)
+    
+    v_fr = nemo_ds['thetao'] * domcfg_fr.tmask
+    v_to = remap_vertical(v_fr, grid_fr, grid_to, axis='Z', scale_factor_fr=domcfg_fr.e3t_0, scale_factor_to=domcfg_to.e3t_0)
+    v_to_auto = remap_vertical(v_fr, grid_fr, grid_to, axis='Z')
+    _assert_same_integrated_value(v_fr, v_to_auto, e3_fr=domcfg_fr.e3t_0, e3_to=domcfg_to.e3t_0)
+    _assert_same_domcfg(v_to, v_to_auto)
     
 
 def test_T_1_same_fr_and_to():

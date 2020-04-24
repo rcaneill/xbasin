@@ -1,7 +1,7 @@
-Metadata-Version: 1.2
+Metadata-Version: 1.0
 Name: xbasin
-Version: 0.0.1
-Summary: TODO
+Version: 0.0.0
+Summary: Interface to open NEMO global circulation model output dataset and create a xgcm grid.
 Home-page: https://github.com/rcaneill/xbasin
 Author: Romain Caneill
 Author-email: romain.caneill@gu.se
@@ -10,9 +10,3 @@ Description: # xbasin
         Python package to compute diagnostics of idealized basin global circulation models. NEMO oriented for now. Deals with terrain-following coordinates.
         
 Platform: UNKNOWN
-Classifier: Development Status :: 3 - Alpha
-Classifier: Programming Language :: Python
-Classifier: Programming Language :: Python :: 3
-Classifier: Intended Audience :: Science/Research
-Classifier: License :: OSI Approved :: MIT License
-Requires-Python: >=3.6
