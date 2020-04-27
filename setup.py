@@ -12,7 +12,10 @@ dist.Distribution(dict(setup_requires='pythran'))
 # Pythran modules
 try:
     from pythran import PythranExtension
-    module_interpolation = PythranExtension('xbasin.interpolation_compiled', sources=['xbasin/_interpolation.py'])
+
+    module_interpolation = PythranExtension(
+        "xbasin.interpolation_compiled", sources=["xbasin/_interpolation.py"]
+    )
     EXT_MODULES = [module_interpolation]
 except ModuleNotFoundError:
     # Compilation is not possible
@@ -29,28 +32,26 @@ CLASSIFIERS = [
     #   3 - Alpha
     #   4 - Beta
     #   5 - Production/Stable
-    'Development Status :: 3 - Alpha',
-    
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 3',
-    'Intended Audience :: Science/Research',
-    'License :: OSI Approved :: MIT License'
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
 ]
 INSTALL_REQUIRES = ["xarray", "dask", "numpy", "pythran>=0.9.5"]
 DESCRIPTION = "TODO"
-PYTHON_REQUIRES = '>=3.6'
-#SETUP_REQUIRES = ['pytest-runner']
-#TESTS_REQUIRE = ['pytest']
-#ZIP_SAFE = False
-#INCLUDE_PACKAGE_DATA = True
-
+PYTHON_REQUIRES = ">=3.6"
+# SETUP_REQUIRES = ['pytest-runner']
+# TESTS_REQUIRE = ['pytest']
+# ZIP_SAFE = False
+# INCLUDE_PACKAGE_DATA = True
 
 
 def readme():
     with open("README.md") as f:
         return f.read()
 
-    
+
 # Main setup:
 setup(
     name=DISTNAME,

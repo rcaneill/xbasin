@@ -5,14 +5,14 @@
 #ifdef _OPENMP
 #include <omp.h>
 #endif
+#include <pythonic/include/types/float128.hpp>
 #include <pythonic/include/types/float64.hpp>
 #include <pythonic/include/types/ndarray.hpp>
 #include <pythonic/include/types/float32.hpp>
-#include <pythonic/include/types/float128.hpp>
 #include <pythonic/types/float64.hpp>
+#include <pythonic/types/float32.hpp>
 #include <pythonic/types/float128.hpp>
 #include <pythonic/types/ndarray.hpp>
-#include <pythonic/types/float32.hpp>
 #include <pythonic/include/__builtin__/getattr.hpp>
 #include <pythonic/include/__builtin__/len.hpp>
 #include <pythonic/include/__builtin__/pythran/make_shape.hpp>
@@ -123,33 +123,30 @@ namespace __pythran_interpolation_compiled
       typedef _bisect __type39;
       typedef typename std::remove_cv<typename std::remove_reference<argument_type0>::type>::type __type40;
       typedef pythonic::types::contiguous_slice __type41;
-      typedef decltype(std::declval<__type40>()(std::declval<__type41>(), std::declval<__type16>(), std::declval<__type18>())) __type42;
-      typedef decltype(pythonic::types::make_tuple(std::declval<__type14>(), std::declval<__type16>(), std::declval<__type18>())) __type43;
-      typedef decltype(std::declval<__type2>()[std::declval<__type43>()]) __type44;
-      typedef typename pythonic::assignable<decltype(std::declval<__type39>()(std::declval<__type42>(), std::declval<__type44>()))>::type __type45;
-      typedef decltype(pythonic::types::make_tuple(std::declval<__type45>(), std::declval<__type16>(), std::declval<__type18>(), std::declval<__type20>())) __type46;
-      typedef decltype(std::declval<__type5>()[std::declval<__type46>()]) __type47;
-      typedef container<typename std::remove_reference<__type47>::type> __type48;
-      typedef typename __combined<__type38,__type48>::type __type49;
-      typedef typename __combined<__type49,__type22>::type __type50;
-      typedef typename __combined<__type50,__type48>::type __type51;
-      typedef decltype(pythonic::types::make_tuple(std::declval<__type45>(), std::declval<__type16>(), std::declval<__type18>())) __type52;
-      typedef decltype(std::declval<__type40>()[std::declval<__type52>()]) __type53;
-      typedef decltype((std::declval<__type44>() - std::declval<__type53>())) __type54;
-      typedef decltype((pythonic::operator_::add(std::declval<__type45>(), std::declval<__type24>()))) __type55;
-      typedef decltype(pythonic::types::make_tuple(std::declval<__type55>(), std::declval<__type16>(), std::declval<__type18>(), std::declval<__type20>())) __type56;
-      typedef decltype(std::declval<__type5>()[std::declval<__type56>()]) __type57;
-      typedef decltype((std::declval<__type57>() - std::declval<__type47>())) __type58;
-      typedef decltype((pythonic::operator_::mul(std::declval<__type54>(), std::declval<__type58>()))) __type59;
-      typedef decltype(pythonic::types::make_tuple(std::declval<__type55>(), std::declval<__type16>(), std::declval<__type18>())) __type60;
-      typedef decltype(std::declval<__type40>()[std::declval<__type60>()]) __type61;
-      typedef decltype((std::declval<__type61>() - std::declval<__type53>())) __type62;
-      typedef decltype((pythonic::operator_::div(std::declval<__type59>(), std::declval<__type62>()))) __type63;
-      typedef decltype((pythonic::operator_::add(std::declval<__type47>(), std::declval<__type63>()))) __type64;
-      typedef container<typename std::remove_reference<__type64>::type> __type65;
-      typedef typename __combined<__type51,__type65>::type __type66;
-      typedef typename __combined<__type66,__type22>::type __type67;
-      typedef typename pythonic::returnable<typename __combined<__type67,__type65>::type>::type result_type;
+      typedef decltype(std::declval<__type40>()(std::declval<__type41>(), std::declval<__type16>(), std::declval<__type18>(), std::declval<__type20>())) __type42;
+      typedef decltype(std::declval<__type2>()[std::declval<__type21>()]) __type43;
+      typedef typename pythonic::assignable<decltype(std::declval<__type39>()(std::declval<__type42>(), std::declval<__type43>()))>::type __type44;
+      typedef decltype(pythonic::types::make_tuple(std::declval<__type44>(), std::declval<__type16>(), std::declval<__type18>(), std::declval<__type20>())) __type45;
+      typedef decltype(std::declval<__type5>()[std::declval<__type45>()]) __type46;
+      typedef container<typename std::remove_reference<__type46>::type> __type47;
+      typedef typename __combined<__type38,__type47>::type __type48;
+      typedef typename __combined<__type48,__type22>::type __type49;
+      typedef typename __combined<__type49,__type47>::type __type50;
+      typedef decltype(std::declval<__type40>()[std::declval<__type45>()]) __type51;
+      typedef decltype((std::declval<__type43>() - std::declval<__type51>())) __type52;
+      typedef decltype((pythonic::operator_::add(std::declval<__type44>(), std::declval<__type24>()))) __type53;
+      typedef decltype(pythonic::types::make_tuple(std::declval<__type53>(), std::declval<__type16>(), std::declval<__type18>(), std::declval<__type20>())) __type54;
+      typedef decltype(std::declval<__type5>()[std::declval<__type54>()]) __type55;
+      typedef decltype((std::declval<__type55>() - std::declval<__type46>())) __type56;
+      typedef decltype((pythonic::operator_::mul(std::declval<__type52>(), std::declval<__type56>()))) __type57;
+      typedef decltype(std::declval<__type40>()[std::declval<__type54>()]) __type58;
+      typedef decltype((std::declval<__type58>() - std::declval<__type51>())) __type59;
+      typedef decltype((pythonic::operator_::div(std::declval<__type57>(), std::declval<__type59>()))) __type60;
+      typedef decltype((pythonic::operator_::add(std::declval<__type46>(), std::declval<__type60>()))) __type61;
+      typedef container<typename std::remove_reference<__type61>::type> __type62;
+      typedef typename __combined<__type50,__type62>::type __type63;
+      typedef typename __combined<__type63,__type22>::type __type64;
+      typedef typename pythonic::returnable<typename __combined<__type64,__type62>::type>::type result_type;
     }  
     ;
     template <typename argument_type0 , typename argument_type1 , typename argument_type2 >
@@ -226,87 +223,66 @@ namespace __pythran_interpolation_compiled
     typedef _bisect __type36;
     typedef typename std::remove_cv<typename std::remove_reference<argument_type0>::type>::type __type37;
     typedef pythonic::types::contiguous_slice __type38;
-    typedef decltype(std::declval<__type37>()(std::declval<__type38>(), std::declval<__type16>(), std::declval<__type18>())) __type39;
-    typedef decltype(pythonic::types::make_tuple(std::declval<__type14>(), std::declval<__type16>(), std::declval<__type18>())) __type40;
-    typedef decltype(std::declval<__type2>()[std::declval<__type40>()]) __type41;
-    typedef typename pythonic::assignable<decltype(std::declval<__type36>()(std::declval<__type39>(), std::declval<__type41>()))>::type __type42;
-    typedef decltype(pythonic::types::make_tuple(std::declval<__type42>(), std::declval<__type16>(), std::declval<__type18>(), std::declval<__type20>())) __type43;
-    typedef decltype(std::declval<__type5>()[std::declval<__type43>()]) __type44;
-    typedef container<typename std::remove_reference<__type44>::type> __type45;
-    typedef typename __combined<__type35,__type45>::type __type46;
-    typedef decltype(pythonic::types::make_tuple(std::declval<__type42>(), std::declval<__type16>(), std::declval<__type18>())) __type47;
-    typedef decltype(std::declval<__type37>()[std::declval<__type47>()]) __type48;
-    typedef decltype((std::declval<__type41>() - std::declval<__type48>())) __type49;
-    typedef decltype((pythonic::operator_::add(std::declval<__type42>(), std::declval<__type24>()))) __type50;
-    typedef decltype(pythonic::types::make_tuple(std::declval<__type50>(), std::declval<__type16>(), std::declval<__type18>(), std::declval<__type20>())) __type51;
-    typedef decltype(std::declval<__type5>()[std::declval<__type51>()]) __type52;
-    typedef decltype((std::declval<__type52>() - std::declval<__type44>())) __type53;
-    typedef decltype((pythonic::operator_::mul(std::declval<__type49>(), std::declval<__type53>()))) __type54;
-    typedef decltype(pythonic::types::make_tuple(std::declval<__type50>(), std::declval<__type16>(), std::declval<__type18>())) __type55;
-    typedef decltype(std::declval<__type37>()[std::declval<__type55>()]) __type56;
-    typedef decltype((std::declval<__type56>() - std::declval<__type48>())) __type57;
-    typedef decltype((pythonic::operator_::div(std::declval<__type54>(), std::declval<__type57>()))) __type58;
-    typedef decltype((pythonic::operator_::add(std::declval<__type44>(), std::declval<__type58>()))) __type59;
-    typedef container<typename std::remove_reference<__type59>::type> __type60;
+    typedef decltype(std::declval<__type37>()(std::declval<__type38>(), std::declval<__type16>(), std::declval<__type18>(), std::declval<__type20>())) __type39;
+    typedef decltype(std::declval<__type2>()[std::declval<__type21>()]) __type40;
+    typedef typename pythonic::assignable<decltype(std::declval<__type36>()(std::declval<__type39>(), std::declval<__type40>()))>::type __type41;
+    typedef decltype(pythonic::types::make_tuple(std::declval<__type41>(), std::declval<__type16>(), std::declval<__type18>(), std::declval<__type20>())) __type42;
+    typedef decltype(std::declval<__type5>()[std::declval<__type42>()]) __type43;
+    typedef container<typename std::remove_reference<__type43>::type> __type44;
+    typedef typename __combined<__type35,__type44>::type __type45;
+    typedef decltype(std::declval<__type37>()[std::declval<__type42>()]) __type46;
+    typedef decltype((std::declval<__type40>() - std::declval<__type46>())) __type47;
+    typedef decltype((pythonic::operator_::add(std::declval<__type41>(), std::declval<__type24>()))) __type48;
+    typedef decltype(pythonic::types::make_tuple(std::declval<__type48>(), std::declval<__type16>(), std::declval<__type18>(), std::declval<__type20>())) __type49;
+    typedef decltype(std::declval<__type5>()[std::declval<__type49>()]) __type50;
+    typedef decltype((std::declval<__type50>() - std::declval<__type43>())) __type51;
+    typedef decltype((pythonic::operator_::mul(std::declval<__type47>(), std::declval<__type51>()))) __type52;
+    typedef decltype(std::declval<__type37>()[std::declval<__type49>()]) __type53;
+    typedef decltype((std::declval<__type53>() - std::declval<__type46>())) __type54;
+    typedef decltype((pythonic::operator_::div(std::declval<__type52>(), std::declval<__type54>()))) __type55;
+    typedef decltype((pythonic::operator_::add(std::declval<__type43>(), std::declval<__type55>()))) __type56;
+    typedef container<typename std::remove_reference<__type56>::type> __type57;
     typename pythonic::assignable<typename std::remove_cv<typename std::iterator_traits<typename std::remove_reference<__type17>::type::iterator>::value_type>::type>::type ji;
-    typename pythonic::assignable<typename std::remove_cv<typename std::iterator_traits<typename std::remove_reference<__type19>::type::iterator>::value_type>::type>::type jt___;
-    typename pythonic::assignable<typename std::remove_cv<typename std::iterator_traits<typename std::remove_reference<__type19>::type::iterator>::value_type>::type>::type jt__;
     typename pythonic::assignable<typename std::remove_cv<typename std::iterator_traits<typename std::remove_reference<__type13>::type::iterator>::value_type>::type>::type jk;
-    typename pythonic::assignable<typename std::remove_cv<typename std::iterator_traits<typename std::remove_reference<__type19>::type::iterator>::value_type>::type>::type jt_;
-    typename pythonic::assignable<typename std::remove_cv<typename std::iterator_traits<typename std::remove_reference<__type19>::type::iterator>::value_type>::type>::type jt;
     typename pythonic::assignable<typename std::remove_cv<typename std::iterator_traits<typename std::remove_reference<__type15>::type::iterator>::value_type>::type>::type jj;
+    typename pythonic::assignable<typename std::remove_cv<typename std::iterator_traits<typename std::remove_reference<__type19>::type::iterator>::value_type>::type>::type jt;
     typename pythonic::assignable<decltype(std::get<0>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)))>::type jpk_old = std::get<0>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old));
-    typename pythonic::assignable<typename __combined<__type46,__type60>::type>::type V_new = pythonic::numpy::functor::empty{}(pythonic::__builtin__::pythran::functor::make_shape{}(std::get<0>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, z_new)), std::get<1>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)), std::get<2>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)), std::get<3>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old))));
+    typename pythonic::assignable<typename __combined<__type45,__type57>::type>::type V_new = pythonic::numpy::functor::empty{}(pythonic::__builtin__::pythran::functor::make_shape{}(std::get<0>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, z_new)), std::get<1>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)), std::get<2>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)), std::get<3>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old))));
     {
-      #pragma omp parallel for collapse(3)
-      for (long  ji=0L; ji < std::get<2>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)); ji += 1L)
+      #pragma omp parallel for collapse(4)
+      for (long  jk=0L; jk < std::get<0>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, z_new)); jk += 1L)
       {
         {
           for (long  jj=0L; jj < std::get<1>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)); jj += 1L)
           {
             {
-              for (long  jk=0L; jk < std::get<0>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, z_new)); jk += 1L)
+              for (long  ji=0L; ji < std::get<2>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)); ji += 1L)
               {
-                if ((pythonic::operator_::le(z_new.fast(pythonic::types::make_tuple(jk, jj, ji)), z_old.fast(pythonic::types::make_tuple(0L, jj, ji)))))
                 {
+                  for (long  jt=0L; jt < std::get<3>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)); jt += 1L)
                   {
-                    for (long  jt=0L; jt < std::get<3>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)); jt += 1L)
+                    if ((pythonic::operator_::le(z_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt)), z_old.fast(pythonic::types::make_tuple(0L, jj, ji, jt)))))
                     {
                       V_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt)) = V_old.fast(pythonic::types::make_tuple(0L, jj, ji, jt));
                     }
-                  }
-                }
-                else
-                {
-                  {
-                    typename pythonic::assignable<typename pythonic::assignable<decltype(std::declval<__type36>()(std::declval<__type39>(), std::declval<__type41>()))>::type>::type ind;
-                    if ((pythonic::operator_::ge(z_new.fast(pythonic::types::make_tuple(jk, jj, ji)), z_old[pythonic::types::make_tuple((jpk_old - 1L), jj, ji)])))
-                    {
-                      {
-                        for (long  jt_=0L; jt_ < std::get<3>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)); jt_ += 1L)
-                        {
-                          V_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt_)) = V_old[pythonic::types::make_tuple((jpk_old - 1L), jj, ji, jt_)];
-                        }
-                      }
-                    }
                     else
                     {
-                      ind = _bisect()(z_old(pythonic::types::contiguous_slice(pythonic::__builtin__::None,pythonic::__builtin__::None),jj,ji), z_new.fast(pythonic::types::make_tuple(jk, jj, ji)));
-                      if ((pythonic::operator_::eq(z_new.fast(pythonic::types::make_tuple(jk, jj, ji)), z_old[pythonic::types::make_tuple(ind, jj, ji)])))
                       {
+                        typename pythonic::assignable<typename pythonic::assignable<decltype(std::declval<__type36>()(std::declval<__type39>(), std::declval<__type40>()))>::type>::type ind;
+                        if ((pythonic::operator_::ge(z_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt)), z_old[pythonic::types::make_tuple((jpk_old - 1L), jj, ji, jt)])))
                         {
-                          for (long  jt__=0L; jt__ < std::get<3>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)); jt__ += 1L)
-                          {
-                            V_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt__)) = V_old[pythonic::types::make_tuple(ind, jj, ji, jt__)];
-                          }
+                          V_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt)) = V_old[pythonic::types::make_tuple((jpk_old - 1L), jj, ji, jt)];
                         }
-                      }
-                      else
-                      {
+                        else
                         {
-                          for (long  jt___=0L; jt___ < std::get<3>(pythonic::__builtin__::getattr(pythonic::types::attr::SHAPE{}, V_old)); jt___ += 1L)
+                          ind = _bisect()(z_old(pythonic::types::contiguous_slice(pythonic::__builtin__::None,pythonic::__builtin__::None),jj,ji,jt), z_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt)));
+                          if ((pythonic::operator_::eq(z_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt)), z_old[pythonic::types::make_tuple(ind, jj, ji, jt)])))
                           {
-                            V_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt___)) = (pythonic::operator_::add(V_old[pythonic::types::make_tuple(ind, jj, ji, jt___)], (pythonic::operator_::div((pythonic::operator_::mul((z_new.fast(pythonic::types::make_tuple(jk, jj, ji)) - z_old[pythonic::types::make_tuple(ind, jj, ji)]), (V_old[pythonic::types::make_tuple((pythonic::operator_::add(ind, 1L)), jj, ji, jt___)] - V_old[pythonic::types::make_tuple(ind, jj, ji, jt___)]))), (z_old[pythonic::types::make_tuple((pythonic::operator_::add(ind, 1L)), jj, ji)] - z_old[pythonic::types::make_tuple(ind, jj, ji)])))));
+                            V_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt)) = V_old[pythonic::types::make_tuple(ind, jj, ji, jt)];
+                          }
+                          else
+                          {
+                            V_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt)) = (pythonic::operator_::add(V_old[pythonic::types::make_tuple(ind, jj, ji, jt)], (pythonic::operator_::div((pythonic::operator_::mul((z_new.fast(pythonic::types::make_tuple(jk, jj, ji, jt)) - z_old[pythonic::types::make_tuple(ind, jj, ji, jt)]), (V_old[pythonic::types::make_tuple((pythonic::operator_::add(ind, 1L)), jj, ji, jt)] - V_old[pythonic::types::make_tuple(ind, jj, ji, jt)]))), (z_old[pythonic::types::make_tuple((pythonic::operator_::add(ind, 1L)), jj, ji, jt)] - z_old[pythonic::types::make_tuple(ind, jj, ji, jt)])))));
                           }
                         }
                       }
@@ -324,7 +300,7 @@ namespace __pythran_interpolation_compiled
 }
 #include <pythonic/python/exception_handler.hpp>
 #ifdef ENABLE_PYTHON_MODULE
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical0(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical0(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -339,7 +315,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical1(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical1(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -354,7 +330,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical2(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical2(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -369,7 +345,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical3(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical3(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -384,7 +360,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical4(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical4(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -399,7 +375,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical5(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical5(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -414,7 +390,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical6(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical6(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -429,7 +405,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical7(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical7(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -444,7 +420,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical8(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical8(pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -459,7 +435,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical9(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical9(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -474,7 +450,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical10(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical10(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -489,7 +465,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical11(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical11(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -504,7 +480,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical12(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical12(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -519,7 +495,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical13(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical13(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -534,7 +510,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical14(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical14(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -549,7 +525,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical15(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical15(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -564,7 +540,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical16(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical16(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -579,7 +555,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical17(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical17(pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -594,7 +570,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical18(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical18(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -609,7 +585,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical19(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical19(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -624,7 +600,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical20(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical20(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -639,7 +615,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical21(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical21(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -654,7 +630,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical22(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical22(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -669,7 +645,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical23(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical23(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -684,7 +660,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical24(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical24(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -699,7 +675,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical25(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical25(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -714,7 +690,7 @@ typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::t
                             }
                             ;
 }
-typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical26(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
+typename __pythran_interpolation_compiled::interp_new_vertical::type<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>::result_type interp_new_vertical26(pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_old, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& z_new, pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>&& V_old) 
 {
   
                             PyThreadState *_save = PyEval_SaveThread();
@@ -738,8 +714,8 @@ __pythran_wrap_interp_new_vertical0(PyObject *self, PyObject *args, PyObject *kw
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical0(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical0(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -753,8 +729,8 @@ __pythran_wrap_interp_new_vertical1(PyObject *self, PyObject *args, PyObject *kw
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical1(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical1(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -768,8 +744,8 @@ __pythran_wrap_interp_new_vertical2(PyObject *self, PyObject *args, PyObject *kw
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical2(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical2(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -783,8 +759,8 @@ __pythran_wrap_interp_new_vertical3(PyObject *self, PyObject *args, PyObject *kw
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical3(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical3(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -798,8 +774,8 @@ __pythran_wrap_interp_new_vertical4(PyObject *self, PyObject *args, PyObject *kw
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical4(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical4(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -813,8 +789,8 @@ __pythran_wrap_interp_new_vertical5(PyObject *self, PyObject *args, PyObject *kw
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical5(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical5(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -828,8 +804,8 @@ __pythran_wrap_interp_new_vertical6(PyObject *self, PyObject *args, PyObject *kw
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical6(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical6(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -843,8 +819,8 @@ __pythran_wrap_interp_new_vertical7(PyObject *self, PyObject *args, PyObject *kw
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical7(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical7(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -858,8 +834,8 @@ __pythran_wrap_interp_new_vertical8(PyObject *self, PyObject *args, PyObject *kw
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical8(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical8(from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -873,8 +849,8 @@ __pythran_wrap_interp_new_vertical9(PyObject *self, PyObject *args, PyObject *kw
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical9(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical9(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -888,8 +864,8 @@ __pythran_wrap_interp_new_vertical10(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical10(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical10(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -903,8 +879,8 @@ __pythran_wrap_interp_new_vertical11(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical11(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical11(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -918,8 +894,8 @@ __pythran_wrap_interp_new_vertical12(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical12(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical12(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -933,8 +909,8 @@ __pythran_wrap_interp_new_vertical13(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical13(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical13(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -948,8 +924,8 @@ __pythran_wrap_interp_new_vertical14(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical14(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical14(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -963,8 +939,8 @@ __pythran_wrap_interp_new_vertical15(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical15(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical15(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -978,8 +954,8 @@ __pythran_wrap_interp_new_vertical16(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical16(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical16(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -993,8 +969,8 @@ __pythran_wrap_interp_new_vertical17(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical17(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical17(from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -1008,8 +984,8 @@ __pythran_wrap_interp_new_vertical18(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical18(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical18(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -1023,8 +999,8 @@ __pythran_wrap_interp_new_vertical19(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical19(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical19(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -1038,8 +1014,8 @@ __pythran_wrap_interp_new_vertical20(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical20(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical20(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -1053,8 +1029,8 @@ __pythran_wrap_interp_new_vertical21(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical21(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical21(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -1068,8 +1044,8 @@ __pythran_wrap_interp_new_vertical22(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical22(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical22(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -1083,8 +1059,8 @@ __pythran_wrap_interp_new_vertical23(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical23(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical23(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -1098,8 +1074,8 @@ __pythran_wrap_interp_new_vertical24(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical24(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical24(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<float,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -1113,8 +1089,8 @@ __pythran_wrap_interp_new_vertical25(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical25(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical25(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -1128,8 +1104,8 @@ __pythran_wrap_interp_new_vertical26(PyObject *self, PyObject *args, PyObject *k
     if(! PyArg_ParseTupleAndKeywords(args, kw, "OOO",
                                      (char**)keywords , &args_obj[0], &args_obj[1], &args_obj[2]))
         return nullptr;
-    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
-        return to_python(interp_new_vertical26(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
+    if(is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]) && is_convertible<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2]))
+        return to_python(interp_new_vertical26(from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[0]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[1]), from_python<pythonic::types::ndarray<long double,pythonic::types::pshape<long,long,long,long>>>(args_obj[2])));
     else {
         return nullptr;
     }
@@ -1276,7 +1252,7 @@ if(PyObject* obj = __pythran_wrap_interp_new_vertical26(self, args, kw))
 PyErr_Clear();
 
                 return pythonic::python::raise_invalid_argument(
-                               "interp_new_vertical", "\n""    - interp_new_vertical(float32[:,:,:], float32[:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:], float32[:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:], float32[:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:], float64[:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:], float64[:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:], float64[:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:], float128[:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:], float128[:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:], float128[:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:], float32[:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:], float32[:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:], float32[:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:], float64[:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:], float64[:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:], float64[:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:], float128[:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:], float128[:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:], float128[:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:], float32[:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:], float32[:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:], float32[:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:], float64[:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:], float64[:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:], float64[:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:], float128[:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:], float128[:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:], float128[:,:,:], float128[:,:,:,:])", args, kw);
+                               "interp_new_vertical", "\n""    - interp_new_vertical(float32[:,:,:,:], float32[:,:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:,:], float32[:,:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:,:], float32[:,:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:,:], float64[:,:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:,:], float64[:,:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:,:], float64[:,:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:,:], float128[:,:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:,:], float128[:,:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float32[:,:,:,:], float128[:,:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:,:], float32[:,:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:,:], float32[:,:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:,:], float32[:,:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:,:], float64[:,:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:,:], float64[:,:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:,:], float64[:,:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:,:], float128[:,:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:,:], float128[:,:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float64[:,:,:,:], float128[:,:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:,:], float32[:,:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:,:], float32[:,:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:,:], float32[:,:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:,:], float64[:,:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:,:], float64[:,:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:,:], float64[:,:,:,:], float128[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:,:], float128[:,:,:,:], float32[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:,:], float128[:,:,:,:], float64[:,:,:,:])\n""    - interp_new_vertical(float128[:,:,:,:], float128[:,:,:,:], float128[:,:,:,:])", args, kw);
                 });
             }
 
@@ -1286,7 +1262,7 @@ static PyMethodDef Methods[] = {
     "interp_new_vertical",
     (PyCFunction)__pythran_wrapall_interp_new_vertical,
     METH_VARARGS | METH_KEYWORDS,
-    "\n""  !========================================\n""  ! Compute the interpolation of the data\n""  ! The depths must be sorted increasingly\n""  ! Extend the value outside the depth range (i.e. above the surface or below the bathymetry)\n""  REAL(8), INTENT(in   ), DIMENSION(jpk_old, jpj, jpi)      ::   z_old   ! old vertical positions\n""  REAL(8), INTENT(in   ), DIMENSION(jpk_new, jpj, jpi)      ::   z_new   ! new vertical positions\n""  REAL(8), INTENT(in   ), DIMENSION(jpk_old, jpj, jpi, jpt) ::   V_old   ! old variable values\n""  REAL(8), INTENT(  out), DIMENSION(jpk_new, jpj, jpi, jpt) ::   V_new   ! new variable values (interpolated)\n""  !!\n""  INTEGER ::   ji, jj, jk   ! Loop indices\n""  INTEGER ::   ind   ! smallest index of the element to the left (previous) so that z_old(ind) <= z <= z_old(ind+1)\n""  !!----------------------------------------\n""\n""\n""Supported prototypes:\n""\n""- interp_new_vertical(float32[:,:,:], float32[:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:], float32[:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:], float32[:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:], float64[:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:], float64[:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:], float64[:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:], float128[:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:], float128[:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:], float128[:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:], float32[:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:], float32[:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:], float32[:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:], float64[:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:], float64[:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:], float64[:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:], float128[:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:], float128[:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:], float128[:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:], float32[:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:], float32[:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:], float32[:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:], float64[:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:], float64[:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:], float64[:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:], float128[:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:], float128[:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:], float128[:,:,:], float128[:,:,:,:])"},
+    "\n""  !========================================\n""  ! Compute the interpolation of the data\n""  ! The depths must be sorted increasingly\n""  ! Extend the value outside the depth range (i.e. above the surface or below the bathymetry)\n""  REAL(8), INTENT(in   ), DIMENSION(jpk_old, jpj, jpi, jpt) ::   z_old   ! old vertical positions\n""  REAL(8), INTENT(in   ), DIMENSION(jpk_new, jpj, jpi, jpt) ::   z_new   ! new vertical positions\n""  REAL(8), INTENT(in   ), DIMENSION(jpk_old, jpj, jpi, jpt) ::   V_old   ! old variable values\n""  REAL(8), INTENT(  out), DIMENSION(jpk_new, jpj, jpi, jpt) ::   V_new   ! new variable values (interpolated)\n""  !!\n""  INTEGER ::   ji, jj, jk   ! Loop indices\n""  INTEGER ::   ind   ! smallest index of the element to the left (previous) so that z_old(ind) <= z <= z_old(ind+1)\n""  !!----------------------------------------\n""\n""\n""Supported prototypes:\n""\n""- interp_new_vertical(float32[:,:,:,:], float32[:,:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:,:], float32[:,:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:,:], float32[:,:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:,:], float64[:,:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:,:], float64[:,:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:,:], float64[:,:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:,:], float128[:,:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:,:], float128[:,:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float32[:,:,:,:], float128[:,:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:,:], float32[:,:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:,:], float32[:,:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:,:], float32[:,:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:,:], float64[:,:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:,:], float64[:,:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:,:], float64[:,:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:,:], float128[:,:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:,:], float128[:,:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float64[:,:,:,:], float128[:,:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:,:], float32[:,:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:,:], float32[:,:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:,:], float32[:,:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:,:], float64[:,:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:,:], float64[:,:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:,:], float64[:,:,:,:], float128[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:,:], float128[:,:,:,:], float32[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:,:], float128[:,:,:,:], float64[:,:,:,:])\n""- interp_new_vertical(float128[:,:,:,:], float128[:,:,:,:], float128[:,:,:,:])"},
     {NULL, NULL, 0, NULL}
 };
 
@@ -1331,8 +1307,8 @@ PYTHRAN_MODULE_INIT(interpolation_compiled)(void) {
         PYTHRAN_RETURN;
     PyObject * theDoc = Py_BuildValue("(sss)",
                                       "0.9.5",
-                                      "2020-04-23 16:47:57.664869",
-                                      "a5f31d2bb8d5c3a2d58dff13bb183666702346bed9a750bc0c8beba88e3cec84");
+                                      "2020-04-27 12:19:51.699389",
+                                      "9f2511d4ade5d180672333427942a97d1921fe2996e8b9cb6c0bb95c863ddb7f");
     if(! theDoc)
         PYTHRAN_RETURN;
     PyModule_AddObject(theModule,

@@ -2,6 +2,7 @@
 
 import xarray as xr
 import numpy as np
+
 try:
     from .interpolation_compiled import interp_new_vertical
     from ._interpolation import interp_new_vertical as interp_new_vertical_pure_python
@@ -13,6 +14,18 @@ import warnings
 For the moment will maybe only work with the NEMO output data
 => To be adapted to a general case later
 """
+
+
+def _shape_to_shape_of_len_4(shape):
+    """
+    Resize the shape so it's len is 4, equivaling to (z, y, x, t), with t containing all extra dims (time, experience, etc)
+    Add extra dims at the end if necessary, or flatten the last dimensions
+
+    (3, 3, 3, 3) -> (3, 3, 3, 3)
+    (3, 3, 3,) -> (3, 3, 3, 1)
+    (3, 3, 3, 2, 3) -> (3, 3, 3, 6)
+    """
+    return shape[:3] + (int(np.prod(shape[3:])),) * max(1, (4 - len(shape)))
 
 
 def _add_dims(z_fr, z_to):
@@ -36,16 +49,18 @@ def _compute_depth_of_shifted_array(grid, da, axis, e3=None):
     axe = grid.axes[axis]
     (old_pos, old_dim) = axe._get_axis_coord(da)
     new_pos = axe._default_shifts[old_pos]
-    if (old_pos in ['inner', 'outer']) or (new_pos in ['inner', 'outer']):
-        raise NotImplementedError(f"Only left, right and center points are possible for now, ({old_pos},{new_pos}) found as positions")
-    
+    if (old_pos in ["inner", "outer"]) or (new_pos in ["inner", "outer"]):
+        raise NotImplementedError(
+            f"Only left, right and center points are possible for now, ({old_pos},{new_pos}) found as positions"
+        )
+
     new_dim = axe.coords[new_pos]
     if e3 is None:
         e3 = grid.get_metric(da, axes=axis)
-    depths = grid.cumsum(e3, axis='Z', boundary='fill', fill_value=0)
+    depths = grid.cumsum(e3, axis="Z", boundary="fill", fill_value=0)
     # If the shifted position is a center point, we need to remove half of the upper scale factor to get the depth
-    if new_pos == 'center':
-        depths -= e3.isel({old_dim:0}).drop_vars(old_dim)/2
+    if new_pos == "center":
+        depths -= e3.isel({old_dim: 0}).drop_vars(old_dim) / 2
     return depths
 
 
@@ -189,17 +204,18 @@ def interpolate(da_fr, z_fr, z_to, coord_nme):
     #   Initialisation
     ####################
 
+    # Add all necessary dimensions so they all match between the 3 arrays. Maybe not the most optimized, but easier to implemented for now
+    (z_fr, z_to) = _add_dims(z_fr, z_to)
+    (z_fr, da_fr) = _add_dims(z_fr, da_fr)
+    (z_fr, z_to) = _add_dims(z_fr, z_to)
+
     # For the call of interp_new_vertical, we need to shape the arrays as:
-    # z_old : (z, y, x   )
-    # z_new : (z, y, x   )
+    # z_old : (z, y, x, t)
+    # z_new : (z, y, x, t)
     # v_old : (z, y, x, t)
     # At least, we need to have z as first dimension and all extra dimensions at the end
 
-    # arrays z_fr and z_to
-    if len(z_fr.dims) != 3 or len(z_to.dims) != 3:
-        raise (ValueError("The vertical coordinates must be 3D (x, y, z) arrays"))
-    # transpose the arrays in the order (z, y, x)
-
+    # transpose the arrays in the order (z, y, x, t)
     dims_fr = list(z_fr.dims)
     dims_to = list(z_to.dims)
     dims_fr.sort()
@@ -221,20 +237,59 @@ def interpolate(da_fr, z_fr, z_to, coord_nme):
     # gets coords of da_fr that are not present in dims_fr
     coords_da_fr = [i for i in da_fr.coords if i not in dims_fr]
     da_fr = da_fr.transpose(*dims_fr, *coords_da_fr, transpose_coords=False)
+
+    z_fr_data = z_fr.data
+    z_to_data = z_to.data
+    da_fr_data = da_fr.data
+
+    # arrays z_fr and z_to
+    if len(z_fr.dims) != 4 or len(z_to.dims) != 4 or len(da_fr.dims) != 4:
+        need_to_reshape = True
+    else:
+        need_to_reshape = False
+
+    if need_to_reshape:
+        # we need to reshape the data
+        z_fr_shape = z_fr_data.shape
+        z_to_shape = z_to_data.shape
+        da_fr_shape = da_fr_data.shape
+
+        z_fr_data = z_fr_data.reshape(_shape_to_shape_of_len_4(z_fr_shape), order="C")
+        z_to_data = z_to_data.reshape(_shape_to_shape_of_len_4(z_to_shape), order="C")
+        da_fr_data = da_fr_data.reshape(
+            _shape_to_shape_of_len_4(da_fr_shape), order="C"
+        )
+
+        # raise (ValueError(f"The vertical coordinates must be 3D (x, y, z) arrays, got {z_fr.dims} and {z_to.dims}\n"+"The data must be a 4D array, got {da_fr.dims}"))
+
     # We have the 3 necessary arrays:
     # z_fr, z_to, and da_fr
     # we interpolate
     try:
-        v_to = interp_new_vertical(z_fr.values, z_to.values, da_fr.values)
+        v_to = interp_new_vertical(z_fr_data, z_to_data, da_fr_data)
     except TypeError:
         # Pythran needs arrays in C order and not in Fortran order
         try:
-            v_to = interp_new_vertical(np.ascontiguousarray(z_fr.values), np.ascontiguousarray(z_to.values), np.ascontiguousarray(da_fr.values))
+            v_to = interp_new_vertical(
+                np.ascontiguousarray(z_fr_data),
+                np.ascontiguousarray(z_to_data),
+                np.ascontiguousarray(da_fr_data),
+            )
         except TypeError as error:
             # falls back on the pure python version
-            warnings.warn(f"Falling back to pure python implementation of the remapping function due to unsupported data type:\n{error}")
-            v_to = interp_new_vertical_pure_python(z_fr.values, z_to.values, da_fr.values)
-        
+            warnings.warn(
+                f"Falling back to pure python implementation of the remapping function due to unsupported data type:\n{error}"
+            )
+            v_to = interp_new_vertical_pure_python(z_fr_data, z_to_data, da_fr_data)
+
+    if need_to_reshape:
+        # new shape:
+        # jpk_new, jpj, and jpi from z_new
+        # we decompose back jpt to the value it had
+        (jpk_new, jpj, jpi) = z_fr_shape[:3]
+        t_tuple = da_fr_shape[3:]
+
+        v_to = v_to.reshape((jpk_new, jpj, jpi) + t_tuple)
 
     # we create a new dataset containing the interpolated values
     # dropping all coordinates of da_fr that are not necessary
