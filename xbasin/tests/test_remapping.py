@@ -17,6 +17,11 @@ _metrics = {
     ("Y",): ["e2t", "e2u", "e2v", "e2f"],  # Y distances
     ("Z",): ["e3t_0", "e3u_0", "e3v_0", "e3f_0", "e3w_0"],  # Z distances
 }
+_metrics_to = {
+    ("X",): ["e1t", "e1u", "e1v", "e1f"],  # X distances
+    ("Y",): ["e2t", "e2u", "e2v", "e2f"],  # Y distances
+    ("Z",): ["e3t_1d", "e3w_1d"],  # Z distances
+}
 
 
 def warning0(fr, to, error):
@@ -40,8 +45,12 @@ def _assert_same_domcfg(v_fr, v_to, error=_error):
 
 
 def _assert_same_integrated_value(v_fr, v_to, e3_fr, e3_to, error=_error):
-    int_fr = (v_fr * e3_fr).sum(dim="z_c")
-    int_to = (v_to * e3_to).sum(dim="z_c")
+    try:
+        int_fr = (v_fr * e3_fr).sum(dim="z_c")
+        int_to = (v_to * e3_to).sum(dim="z_c")
+    except ValueError:
+        int_fr = (v_fr * e3_fr).sum(dim="z_f")
+        int_to = (v_to * e3_to).sum(dim="z_f")
     print(int_to)
     print(int_fr)
     # import matplotlib.pyplot as plt
@@ -123,17 +132,29 @@ def test_W_0_same_fr_and_to():
     grid_to = xgcm.Grid(domcfg_to, periodic=False)
 
     v_fr = nemo_ds["woce"] * 0
-    try:
-        v_to = remap_vertical(
-            v_fr,
-            grid_fr,
-            grid_to,
-            axis="Z",
-            scale_factor_fr=domcfg_fr.e3w_0,
-            scale_factor_to=domcfg_to.e3w_0,
-        )
-    except NotImplementedError:
-        return 0
+    v_to = remap_vertical(
+        v_fr,
+        grid_fr,
+        grid_to,
+        axis="Z",
+        scale_factor_fr=domcfg_fr.e3w_0,
+        scale_factor_to=domcfg_to.e3w_0,
+    )
+    _assert_same_domcfg(v_fr, v_to)
+
+
+def test_W_1_same_fr_and_to():
+    domcfg_fr = open_domcfg_fr()
+
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
+    nemo_ds.load()
+    domcfg_to = open_domcfg_to()
+
+    grid_fr = xgcm.Grid(domcfg_fr, periodic=False, metrics=_metrics)
+    grid_to = xgcm.Grid(domcfg_to, periodic=False, metrics=_metrics_to)
+
+    v_fr = nemo_ds["woce"] * 0 + 1
+    v_to = remap_vertical(v_fr, grid_fr, grid_to, axis="Z",)
     _assert_same_domcfg(v_fr, v_to)
 
 
@@ -245,6 +266,38 @@ def test_U():
     )
     _assert_same_integrated_value(
         v_fr, v_to, e3_fr=domcfg_fr.e3u_0, e3_to=domcfg_to.e3u_0
+    )
+
+
+def test_W():
+    domcfg_fr = open_domcfg_fr()
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
+    nemo_ds.load()
+    domcfg_to = open_domcfg_to()
+
+    grid_fr = xgcm.Grid(domcfg_fr, periodic=False, metrics=_metrics)
+    grid_to = xgcm.Grid(domcfg_to, periodic=False, metrics=_metrics_to)
+
+    v_fr = nemo_ds["woce"]
+    v_to = remap_vertical(v_fr, grid_fr, grid_to, axis="Z",)
+    _assert_same_integrated_value(
+        v_fr, v_to, e3_fr=domcfg_fr.e3w_0, e3_to=domcfg_to.e3w_1d
+    )
+
+
+def test_W_1():
+    domcfg_fr = open_domcfg_fr()
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
+    nemo_ds.load()
+    domcfg_to = open_domcfg_to()
+
+    grid_fr = xgcm.Grid(domcfg_fr, periodic=False, metrics=_metrics)
+    grid_to = xgcm.Grid(domcfg_to, periodic=False, metrics=_metrics_to)
+
+    v_fr = nemo_ds["woce"] * 0 + 1
+    v_to = remap_vertical(v_fr, grid_fr, grid_to, axis="Z",)
+    _assert_same_integrated_value(
+        v_fr, v_to, e3_fr=domcfg_fr.e3w_0, e3_to=domcfg_to.e3w_1d
     )
 
 

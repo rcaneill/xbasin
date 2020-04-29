@@ -112,10 +112,10 @@ def remap_vertical(
 
     ax = grid_fr.axes[axis]
     (position_fr, coord_nme_fr) = ax._get_axis_coord(da)  # e.g. ('center', 'z_c')
-    if position_fr != "center":
+    if position_fr not in ["center", "left"]:
         raise (
             NotImplementedError(
-                "Only interpolation from T, U, and V points is possible for now"
+                "Only interpolation from T, U, V, and F points is possible for now"
             )
         )
 
@@ -344,7 +344,7 @@ def derivative(da, grid, scale_factor, axis, position_fr="left", position_to="ce
     """
     Take the derivative of *da* as a finite difference
     """
-    # from W to T : 'fill', 0
+    # from W to T : 'extend'
     # from T to W : 'fill', first value at T point
     if (position_fr, position_to) == ("center", "left"):
         # T to W point
