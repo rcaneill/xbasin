@@ -4,6 +4,13 @@ from xbasin import remap_vertical
 import numpy as np
 import warnings
 
+
+import os
+from pathlib import Path
+
+TESTPATH = Path(os.path.dirname(os.path.abspath(__file__)))
+
+
 _error = 1e-10
 _metrics = {
     ("X",): ["e1t", "e1u", "e1v", "e1f"],  # X distances
@@ -48,12 +55,12 @@ def _assert_same_integrated_value(v_fr, v_to, e3_fr, e3_to, error=_error):
 
 
 def open_domcfg_to():
-    domcfg_to = xr.open_dataset("data/xnemogcm.domcfg_to.nc")
+    domcfg_to = xr.open_dataset(TESTPATH / "data/xnemogcm.domcfg_to.nc")
     return domcfg_to
 
 
 def open_domcfg_fr():
-    domcfg_fr = xr.open_dataset("data/xnemogcm.domcfg_fr.nc")
+    domcfg_fr = xr.open_dataset(TESTPATH / "data/xnemogcm.domcfg_fr.nc")
     domcfg_fr.load()
     # correct error in domcfg
     domcfg_fr["gdept_0"] = domcfg_fr["gdept_0"].transpose("x_c", "y_c", "z_c")
@@ -86,7 +93,7 @@ def test_reshaping():
 def test_T_0_same_fr_and_to():
     domcfg_fr = open_domcfg_fr()
 
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = domcfg_fr
 
@@ -108,7 +115,7 @@ def test_T_0_same_fr_and_to():
 def test_W_0_same_fr_and_to():
     domcfg_fr = open_domcfg_fr()
 
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = domcfg_fr
 
@@ -132,7 +139,7 @@ def test_W_0_same_fr_and_to():
 
 def test_T_0():
     domcfg_fr = open_domcfg_fr()
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = open_domcfg_to()
 
@@ -168,7 +175,7 @@ def create_depth_from_e3(domcfg, grid, point="T"):
 
 def test_U_0():
     domcfg_fr = open_domcfg_fr()
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = open_domcfg_to()
 
@@ -193,7 +200,7 @@ def test_U_0():
 
 def test_U_1():
     domcfg_fr = open_domcfg_fr()
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = open_domcfg_to()
 
@@ -218,7 +225,7 @@ def test_U_1():
 
 def test_U():
     domcfg_fr = open_domcfg_fr()
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = open_domcfg_to()
 
@@ -243,7 +250,7 @@ def test_U():
 
 def test_T_1_auto_get_scale_factor_to():
     domcfg_fr = open_domcfg_fr()
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = open_domcfg_to()
 
@@ -261,7 +268,7 @@ def test_T_1_auto_get_scale_factor_to():
 
 def test_T_1():
     domcfg_fr = open_domcfg_fr()
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = open_domcfg_to()
 
@@ -284,7 +291,7 @@ def test_T_1():
 
 def test_T_theta():
     domcfg_fr = open_domcfg_fr()
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = open_domcfg_to()
 
@@ -307,7 +314,7 @@ def test_T_theta():
 
 def test_T_theta_full_automatic():
     domcfg_fr = open_domcfg_fr()
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = open_domcfg_to()
 
@@ -333,7 +340,7 @@ def test_T_theta_full_automatic():
 def test_T_1_same_fr_and_to():
     domcfg_fr = open_domcfg_fr()
 
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = domcfg_fr
 
@@ -355,7 +362,7 @@ def test_T_1_same_fr_and_to():
 def test_T_theta_same_fr_and_to():
     domcfg_fr = open_domcfg_fr()
 
-    nemo_ds = xr.open_dataset("data/xnemogcm.nemo.nc")
+    nemo_ds = xr.open_dataset(TESTPATH / "data/xnemogcm.nemo.nc")
     nemo_ds.load()
     domcfg_to = domcfg_fr
 
