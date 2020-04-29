@@ -22,7 +22,7 @@ except ModuleNotFoundError:
     EXT_MODULES = []
 
 DISTNAME = "xbasin"
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 LICENSE = "MIT"
 AUTHOR = "Romain Caneill"
 AUTHOR_EMAIL = "romain.caneill@gu.se"
