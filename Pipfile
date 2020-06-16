@@ -11,11 +11,11 @@ xarray = "*"
 xgcm = "*"
 netcdf4 = "*"
 black = "*"
-jupyter-lab = "*"
 jupyterlab = "*"
 matplotlib = "*"
 cmocean = "*"
 scipy = "*"
+ipympl = "*"
 
 [requires]
 python_version = "3.8"

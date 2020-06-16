@@ -23,7 +23,7 @@ def _compute_moc_in_density_coordinates(v, rho, density_levels, grid, X="X", Z="
     """
     Compute the meridional overturning streamfunction in density coordinates.
     
-    $$\psi_{C y}=\iint_{C^{\prime} \leq C} v d x d z$$
+    $$\psi_{C y}=- \iint_{C^{\prime} \geq C} v d x d z$$
 
     Arguments
     ---------
@@ -44,12 +44,26 @@ def _compute_moc_in_density_coordinates(v, rho, density_levels, grid, X="X", Z="
     Z : str (default 'Z')
         the name of the vertical axis
     """
-    mask = rho <= density_levels
-    psi = grid.integrate(grid.integrate(v * mask, axis=Z), axis=X) * 1e-6
+    mask = rho >= density_levels
+    psi = -grid.integrate(grid.integrate(v * mask, axis=Z), axis=X) * 1e-6
     return psi
 
 
-def create_density_grid(ds, s_min=23, s_max=28, dd=0.05):
+def create_density_grid(ds, s_min=None, s_max=None, dd=0.05, rho=None):
+    """
+    Create the density axis
+
+    If s_min and s_max are not provided, you can provide rho to compute them.
+    """
+    if s_min is None or s_max is None:
+        if rho is None:
+            s_min = 20
+            s_max = 40
+        else:
+            rhomax = rho.max()
+            s_min = np.int(xr.where(rho < 18, rhomax, rho).min())
+            s_max = np.int(rhomax) + 1
+
     # Vertical (density)
     N = np.floor((s_max - s_min) / dd) + 1
 
@@ -76,3 +90,70 @@ def create_density_grid(ds, s_min=23, s_max=28, dd=0.05):
     ds["s_f"] = s_f
 
     return ds
+
+
+def compute_zonal_mean_depth_isopycnal(
+    rho, density_levels, depth, grid, X="X", z_c="z_c", s_f="s_f"
+):
+    max_index = rho.coords[z_c].shape[0] - 1  # start at 0
+
+    mean_depth_isopycnal = (
+        density_levels * grid.average(rho, axis=X).min(dim=z_c) * np.NaN
+    )  # dirty way of doing
+
+    for (i, sigma) in enumerate(density_levels):
+        rho_less_sigma = rho <= sigma
+        upper_t_point_index = xr.where(
+            rho_less_sigma.sum(dim=z_c) > max_index,
+            max_index,
+            rho_less_sigma.sum(dim=z_c),
+        )
+        upper_t_point_index = xr.where(
+            sigma < rho.isel({z_c: slice(None, -1)}).min(dim=z_c),
+            0,
+            upper_t_point_index,
+        )
+        upper_t_point_index = xr.where(
+            sigma > rho.isel({z_c: slice(None, -1)}).max(dim=z_c),
+            max_index,
+            upper_t_point_index,
+        )
+
+        rho_greater_sigma = rho >= sigma
+        lower_t_point_index = xr.where(
+            max_index - rho_greater_sigma.sum(dim=z_c) < 0,
+            0,
+            max_index - rho_greater_sigma.sum(dim=z_c),
+        )
+        lower_t_point_index = xr.where(
+            sigma < rho.isel({z_c: slice(None, -1)}).min(dim=z_c),
+            0,
+            lower_t_point_index,
+        )
+        lower_t_point_index = xr.where(
+            sigma > rho.isel({z_c: slice(None, -1)}).max(dim=z_c),
+            max_index,
+            lower_t_point_index,
+        )
+
+        depth_up = depth.isel({z_c: upper_t_point_index})
+        depth_down = depth.isel({z_c: lower_t_point_index})
+
+        mean_depth_isopycnal[{s_f: i}] = grid.average(
+            (depth_up + depth_down) / 2, axis=X
+        )
+    return mean_depth_isopycnal
+
+
+def compute_barotropic_stream_function(u, grid, Y="Y", Z="Z"):
+    u_barotropic = grid.integrate(u, axis=Z)
+    psi = grid.cumint(-u_barotropic, axis=Y) * 1e-6
+    psi = psi - psi[{"y_f": -1}]
+    psi.attrs.update(
+        {
+            "long_name": "barotropic stream function",
+            "standard_name": "barotropic_stream_function",
+            "units": "Sv",
+        }
+    )
+    return psi
