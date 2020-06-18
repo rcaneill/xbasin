@@ -32,14 +32,14 @@ def compute_b(T, S, z, **kwargs):
     return g * (rho0 - compute_rho(T, S, z, **kwargs)) / rho0
 
 
-def compute_alpha(T, S, z, lambda1=l1, a0=a0, mu1=mu1, nu=nu):
+def compute_alpha(T, S, z, lambda1=l1, a0=a0, mu1=mu1, nu=nu, **_):
     Ta = T - T0
     Sa = S - S0
     alpha = 1 / rho0 * (a0 * (1 + lambda1 * Ta + mu1 * z) - nu * Sa)
     return alpha
 
 
-def compute_beta(T, S, z, b0=b0, lambda2=l2, mu2=mu2):
+def compute_beta(T, S, z, b0=b0, lambda2=l2, mu2=mu2, **_):
     Ta = T - T0
     Sa = S - S0
     beta = 1 / rho0 * b0 * (1 - lambda2 * Sa - mu2 * z)
