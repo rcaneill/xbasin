@@ -113,6 +113,17 @@ def test_T_0_same_fr_and_to():
     _assert_same_domcfg(v_fr, v_to)
 
 
+def test_if_da_is_surface_field():
+    # we expect that nothing happens
+    ds = open_ds()
+
+    grid_fr = xgcm.Grid(ds, periodic=False)
+    grid_to = xgcm.Grid(ds, periodic=False)
+
+    da = remap_vertical(ds.vos, grid_fr, grid_to, axis="Z")
+    assert (da == ds.vos).all()
+
+
 def test_W_0_same_fr_and_to():
     ds = open_ds()
 

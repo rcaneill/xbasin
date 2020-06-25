@@ -102,6 +102,12 @@ def remap_vertical(
             )
         )
 
+    try:
+        grid_fr.axes[axis]._get_axis_coord(da)
+    except KeyError:
+        # We can't do the interpolation (e.g. da is only a surface field)
+        return da
+
     if z_fr is None:
         z_fr = _compute_depth_of_shifted_array(grid_fr, da, axis, e3=scale_factor_fr)
     if z_to is None:
