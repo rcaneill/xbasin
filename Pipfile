@@ -16,6 +16,10 @@ matplotlib = "*"
 cmocean = "*"
 scipy = "*"
 ipympl = "*"
+dask = "*"
+distributed = "*"
+memory-profiler = "*"
+numba = "*"
 
 [requires]
 python_version = "3.8"

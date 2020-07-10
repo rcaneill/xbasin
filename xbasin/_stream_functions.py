@@ -49,6 +49,17 @@ def _compute_moc_in_density_coordinates(v, rho, density_levels, grid, X="X", Z="
     return psi
 
 
+def _compute_moc_in_density_coordinates_loop(
+    v, rho, density_levels, grid, X="X", Z="Z"
+):
+    int_v_dz = np.NaN * density_levels * v.isel({"z_c": 0})
+    for (i, sigma) in enumerate(density_levels):
+        mask = rho <= sigma
+        int_v_dz[{"s_f": i}] = (v * mask).sum(dim="z_c")
+    psi = grid.integrate(int_v_dz, axis=X) * 1e-6
+    return psi
+
+
 def create_density_grid(ds, s_min=None, s_max=None, dd=0.05, rho=None):
     """
     Create the density axis
@@ -92,7 +103,7 @@ def create_density_grid(ds, s_min=None, s_max=None, dd=0.05, rho=None):
     return ds
 
 
-def compute_zonal_mean_depth_isopycnal(
+def compute_zonal_mean_depth_isopycnal_old(
     rho, density_levels, depth, grid, X="X", z_c="z_c", s_f="s_f"
 ):
     max_index = rho.coords[z_c].shape[0] - 1  # start at 0
@@ -142,6 +153,82 @@ def compute_zonal_mean_depth_isopycnal(
         mean_depth_isopycnal[{s_f: i}] = grid.average(
             (depth_up + depth_down) / 2, axis=X
         )
+    return mean_depth_isopycnal
+
+
+def compute_zonal_mean_depth_isopycnal(
+    rho, density_levels, depth, grid, X="X", z_c="z_c", s_f="s_f", x_c="x_c"
+):
+    max_index = rho.coords[z_c].shape[0] - 1  # start at 0
+
+    mean_depth_isopycnal = (
+        density_levels * grid.average(rho, axis=X).min(dim=z_c) * np.NaN
+    )  # dirty way of doing
+    return xr.apply_ufunc(
+        _compute_zonal_mean_depth_isopycnal_gufunc,
+        rho,
+        depth,
+        mean_depth_isopycnal,
+        density_levels,
+        input_core_dims=[[x_c, z_c], [x_c, z_c], [s_f], [s_f]],
+        output_core_dims=[[s_f]],
+        dask="parallelized",
+        output_dtypes=[float],
+        kwargs=dict(max_index=max_index, axis_x=-2, axis_z=-1, axis_s=-1),
+    )
+
+
+def _compute_zonal_mean_depth_isopycnal_gufunc(
+    rho,
+    depth,
+    mean_depth_isopycnal,
+    density_levels,
+    max_index,
+    axis_x=-2,
+    axis_z=-1,
+    axis_s=-1,
+):
+    for (i, sigma) in enumerate(density_levels):
+        rho_less_sigma = rho <= sigma
+        upper_t_point_index = np.where(
+            rho_less_sigma.sum(axis=-1) > max_index,
+            max_index,
+            rho_less_sigma.sum(axis=-1),
+        )
+        upper_t_point_index = np.where(
+            sigma < rho[..., slice(None, -1)].min(axis=axis_z), 0, upper_t_point_index,
+        )
+        upper_t_point_index = np.where(
+            sigma > rho[..., slice(None, -1)].max(axis=axis_z),
+            max_index,
+            upper_t_point_index,
+        )
+
+        rho_greater_sigma = rho >= sigma
+        lower_t_point_index = np.where(
+            max_index - rho_greater_sigma.sum(axis=axis_z) < 0,
+            0,
+            max_index - rho_greater_sigma.sum(axis=axis_z),
+        )
+        lower_t_point_index = np.where(
+            sigma < rho[..., slice(None, -1)].min(axis=axis_z), 0, lower_t_point_index,
+        )
+        lower_t_point_index = np.where(
+            sigma > rho[..., slice(None, -1)].max(axis=axis_z),
+            max_index,
+            lower_t_point_index,
+        )
+
+        meshes = np.mgrid[[slice(None, n) for n in depth.shape[:-1]]]
+
+        indexes_up = (...,) + tuple((xx for xx in meshes)) + (upper_t_point_index,)
+        indexes_down = (...,) + tuple((xx for xx in meshes)) + (lower_t_point_index,)
+
+        depth_up = depth[indexes_up]
+        depth_down = depth[indexes_down]
+
+        mean_depth_isopycnal[..., i] = ((depth_up + depth_down) / 2).mean(axis=-1)
+
     return mean_depth_isopycnal
 
 

@@ -254,11 +254,17 @@ def interpolate(da_fr, z_fr, z_to, coord_nme):
         z_to_shape = z_to_data.shape
         da_fr_shape = da_fr_data.shape
 
+        z_fr_data = z_fr_data.reshape(_shape_to_shape_of_len_4(z_fr_shape))
+        z_to_data = z_to_data.reshape(_shape_to_shape_of_len_4(z_to_shape))
+        da_fr_data = da_fr_data.reshape(_shape_to_shape_of_len_4(da_fr_shape))
+
+        """
         z_fr_data = z_fr_data.reshape(_shape_to_shape_of_len_4(z_fr_shape), order="C")
         z_to_data = z_to_data.reshape(_shape_to_shape_of_len_4(z_to_shape), order="C")
         da_fr_data = da_fr_data.reshape(
             _shape_to_shape_of_len_4(da_fr_shape), order="C"
         )
+        """
 
         # raise (ValueError(f"The vertical coordinates must be 3D (x, y, z) arrays, got {z_fr.dims} and {z_to.dims}\n"+"The data must be a 4D array, got {da_fr.dims}"))
 
