@@ -4,23 +4,6 @@
 
 from setuptools import setup, find_packages, dist
 
-"""
-# Declare the dependency
-dist.Distribution(dict(setup_requires='pythran'))
-"""
-
-# Pythran modules
-try:
-    from pythran import PythranExtension
-
-    module_interpolation = PythranExtension(
-        "xbasin.interpolation_compiled", sources=["xbasin/_interpolation.py"]
-    )
-    EXT_MODULES = [module_interpolation]
-except ModuleNotFoundError:
-    # Compilation is not possible
-    EXT_MODULES = []
-
 DISTNAME = "xbasin"
 VERSION = "0.0.2"
 LICENSE = "MIT"
@@ -38,7 +21,7 @@ CLASSIFIERS = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
 ]
-INSTALL_REQUIRES = ["xarray", "dask", "numpy", "pythran>=0.9.5"]
+INSTALL_REQUIRES = ["xarray", "dask", "numpy"]
 DESCRIPTION = "TODO"
 PYTHON_REQUIRES = ">=3.6"
 # SETUP_REQUIRES = ['pytest-runner']
