@@ -20,6 +20,7 @@ dask = "*"
 distributed = "*"
 memory-profiler = "*"
 numba = "*"
+seaborn = "*"
 
 [requires]
 python_version = "3.8"
