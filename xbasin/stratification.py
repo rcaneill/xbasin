@@ -1,7 +1,7 @@
 def compute_strati_ratio(T, S, alpha, beta, grid):
     """
     Compute the stratification ratio
-    
+
     R = (alpha * dT/dz + beta * dS/dz) / (alpha * dT/dz - beta * dS/dz)
     """
     dT_dz = -grid.derivative(

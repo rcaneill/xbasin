@@ -2,6 +2,9 @@
 Simplified equation of state
 """
 
+import xarray as xr
+import numpy as np
+
 # Reference values used in NEMO
 rn_a0 = 1.655e-1
 rn_b0 = 7.6554e-1
@@ -22,8 +25,8 @@ def compute_rho(
     T,
     S,
     z,
-    lambda1=rn_lambda1,
-    lambda2=rn_lambda2,
+    rn_lambda1=rn_lambda1,
+    rn_lambda2=rn_lambda2,
     rn_a0=rn_a0,
     rn_b0=rn_b0,
     rn_mu1=rn_mu1,
@@ -37,8 +40,8 @@ def compute_rho(
     Sa = S - S0
     rho = (
         rho0
-        - rn_a0 * (1 + 0.5 * lambda1 * Ta + rn_mu1 * z) * Ta
-        + rn_b0 * (1 - 0.5 * lambda2 * Sa - rn_mu2 * z) * Sa
+        - rn_a0 * (1 + 0.5 * rn_lambda1 * Ta + rn_mu1 * z) * Ta
+        + rn_b0 * (1 - 0.5 * rn_lambda2 * Sa - rn_mu2 * z) * Sa
         - rn_nu * Ta * Sa
     )
     return rho
@@ -70,24 +73,24 @@ def compute_b(T, S, z, **kwargs):
 
 
 def compute_alpha(
-    T, S, z, lambda1=rn_lambda1, rn_a0=rn_a0, rn_mu1=rn_mu1, rn_nu=rn_nu, **_
+    T, S, z, rn_lambda1=rn_lambda1, rn_a0=rn_a0, rn_mu1=rn_mu1, rn_nu=rn_nu, **_
 ):
     """
     Compute the thermal expansion
     """
     Ta = T - T0
     Sa = S - S0
-    alpha = 1 / rho0 * (rn_a0 * (1 + lambda1 * Ta + rn_mu1 * z) - rn_nu * Sa)
+    alpha = 1 / rho0 * (rn_a0 * (1 + rn_lambda1 * Ta + rn_mu1 * z) - rn_nu * Sa)
     return alpha
 
 
-def compute_beta(T, S, z, rn_b0=rn_b0, lambda2=rn_lambda2, rn_mu2=rn_mu2, **_):
+def compute_beta(T, S, z, rn_b0=rn_b0, rn_lambda2=rn_lambda2, rn_mu2=rn_mu2, **_):
     """
     Compute the haline contraction
     """
     Ta = T - T0
     Sa = S - S0
-    beta = 1 / rho0 * rn_b0 * (1 - lambda2 * Sa - rn_mu2 * z)
+    beta = 1 / rho0 * rn_b0 * (1 - rn_lambda2 * Sa - rn_mu2 * z)
     return beta
 
 
@@ -116,7 +119,7 @@ def nemo_wrap(ds, rho=True, b=True, alpha=True, beta=True, sigma=True):
 
     out = xr.Dataset()
 
-    if not p_ref in ds:
+    if not "p_ref" in ds:
         reference_levels = np.arange(5) * 1000
         p_ref = xr.DataArray(
             reference_levels,
@@ -129,10 +132,10 @@ def nemo_wrap(ds, rho=True, b=True, alpha=True, beta=True, sigma=True):
                 "units": "dbar",
             },
         )
-        out.dims["p_ref"] = p_ref
+        out = out.expand_dims({"p_ref": p_ref})
 
     if rho:
-        out["rho"] = compute_rho(T, S, z=ds.p_ref, **nameos)
+        out["rho"] = compute_rho(T, S, z=out.p_ref, **nameos)
         out["rho"].attrs.update(
             {
                 "standard_name": "potential_density",
@@ -141,7 +144,7 @@ def nemo_wrap(ds, rho=True, b=True, alpha=True, beta=True, sigma=True):
             }
         )
     if b:
-        out["buoyancy"] = compute_b(T, S, z=ds.p_ref, **nameos)
+        out["buoyancy"] = compute_b(T, S, z=out.p_ref, **nameos)
         out["buoyancy"].attrs.update(
             {
                 "standard_name": "potential_buoyancy",
@@ -150,7 +153,7 @@ def nemo_wrap(ds, rho=True, b=True, alpha=True, beta=True, sigma=True):
             }
         )
     if alpha:
-        out["alpha"] = compute_alpha(T, S, z=ds.p_ref, **nameos)
+        out["alpha"] = compute_alpha(T, S, z=out.p_ref, **nameos)
         out["alpha"].attrs.update(
             {
                 "standard_name": "potential_thermal_expansion",
@@ -159,7 +162,7 @@ def nemo_wrap(ds, rho=True, b=True, alpha=True, beta=True, sigma=True):
             }
         )
     if beta:
-        out["beta"] = compute_beta(T, S, z=ds.p_ref, **nameos)
+        out["beta"] = compute_beta(T, S, z=out.p_ref, **nameos)
         out["beta"].attrs.update(
             {
                 "standard_name": "potential_haline_contraction",
@@ -168,7 +171,7 @@ def nemo_wrap(ds, rho=True, b=True, alpha=True, beta=True, sigma=True):
             }
         )
     if sigma:
-        out["sigma"] = compute_sigma(T, S, z=ds.p_ref, **nameos)
+        out["sigma"] = compute_sigma(T, S, z=out.p_ref, **nameos)
         out["sigma"].attrs.update(
             {
                 "standard_name": "potential_density_anomaly",

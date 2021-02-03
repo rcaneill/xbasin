@@ -22,7 +22,7 @@ def _compute_moc_with_v_at_cst_depth(v, grid, X="X", Z="Z"):
 def _compute_moc_in_density_coordinates(v, rho, density_levels, grid, X="X", Z="Z"):
     """
     Compute the meridional overturning streamfunction in density coordinates.
-    
+
     $$\psi_{C y}=- \iint_{C^{\prime} \geq C} v d x d z$$
 
     Arguments
