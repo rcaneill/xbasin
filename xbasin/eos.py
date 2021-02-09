@@ -48,7 +48,9 @@ def compute_rho(
 
 
 def compute_sigma0(
-    T, S, **kwargs,
+    T,
+    S,
+    **kwargs,
 ):
     """
     compute the density anomaly referenced to the surface
@@ -57,7 +59,10 @@ def compute_sigma0(
 
 
 def compute_sigma(
-    T, S, z, **kwargs,
+    T,
+    S,
+    z,
+    **kwargs,
 ):
     """
     compute the density anomaly referenced to *z*

@@ -9,13 +9,8 @@ verify_ssl = true
 pytest = "*"
 xarray = "*"
 xgcm = "*"
-netcdf4 = "*"
-black = "*"
-jupyterlab = "*"
-matplotlib = "*"
-cmocean = "*"
-scipy = "*"
 ipympl = "*"
+netcdf4 = "*"
 
 [requires]
 python_version = "3.8"

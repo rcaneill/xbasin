@@ -49,9 +49,9 @@ setup(
     install_requires=INSTALL_REQUIRES,
     packages=find_packages(),
     python_requires=PYTHON_REQUIRES,
-    ext_modules=EXT_MODULES,
 )
 """
+    ext_modules=EXT_MODULES,
     package_dir=PACKAGE_DIR,
     package_data=PACKAGE_DATA,
     include_package_data=INCLUDE_PACKAGE_DATA,
