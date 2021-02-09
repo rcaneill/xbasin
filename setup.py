@@ -5,7 +5,7 @@
 from setuptools import setup, find_packages, dist
 
 DISTNAME = "xbasin"
-VERSION = "0.0.3"
+VERSION = "0.0.4"
 LICENSE = "MIT"
 AUTHOR = "Romain Caneill"
 AUTHOR_EMAIL = "romain.caneill@gu.se"
