@@ -79,7 +79,7 @@ def nemo_wrap(ds, heat=True, salt=True, b=True, spicyness=True, fci=True):
             {
                 "standard_name": "surface_buoyancy_flux_heat",
                 "long_name": "surface buoyancy flux due to heat",
-                "units": "m2/s",
+                "units": "m2/s3",
             }
         )
     if salt:
@@ -88,7 +88,7 @@ def nemo_wrap(ds, heat=True, salt=True, b=True, spicyness=True, fci=True):
             {
                 "standard_name": "surface_buoyancy_flux_salt",
                 "long_name": "surface buoyancy flux due to salt",
-                "units": "m2/s",
+                "units": "m2/s3",
             }
         )
     if b:
@@ -97,7 +97,7 @@ def nemo_wrap(ds, heat=True, salt=True, b=True, spicyness=True, fci=True):
             {
                 "standard_name": "surface_buoyancy_flux",
                 "long_name": "surface buoyancy flux",
-                "units": "m2/s",
+                "units": "m2/s3",
             }
         )
     if spicyness:
@@ -108,7 +108,7 @@ def nemo_wrap(ds, heat=True, salt=True, b=True, spicyness=True, fci=True):
             {
                 "standard_name": "surface_buoyancy_flux_spicy",
                 "long_name": "surface buoyancy flux due to spicyness",
-                "units": "m2/s",
+                "units": "m2/s3",
             }
         )
     if fci:

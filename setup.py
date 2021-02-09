@@ -44,6 +44,7 @@ setup(
     author_email=AUTHOR_EMAIL,
     description=DESCRIPTION,
     long_description=readme(),
+    long_description_content_type="text/markdown",
     url=URL,
     classifiers=CLASSIFIERS,
     install_requires=INSTALL_REQUIRES,
