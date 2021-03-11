@@ -12,6 +12,7 @@ xgcm = "*"
 ipympl = "*"
 netcdf4 = "*"
 twine = "*"
+xbasin = {editable = true, path = "."}
 
 [requires]
 python_version = "3.8"

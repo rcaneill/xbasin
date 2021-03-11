@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c7d7e37ab71f9e02b41e10fe21c1795fc59608b155429dec2857ed7d90002fd9"
+            "sha256": "037126a49b3eeb7f1edb29959d02ac77c94b79592b1315da9f9b6e3f7c4f05a7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -1058,6 +1058,10 @@
             ],
             "index": "pypi",
             "version": "==0.16.2"
+        },
+        "xbasin": {
+            "editable": true,
+            "path": "."
         },
         "xgcm": {
             "hashes": [
