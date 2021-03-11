@@ -99,7 +99,7 @@ def compute_beta(T, S, z, rn_b0=rn_b0, rn_lambda2=rn_lambda2, rn_mu2=rn_mu2, **_
     return beta
 
 
-def nemo_wrap(ds, rho=True, b=True, alpha=True, beta=True, sigma=True):
+def nemo_wrap(ds, rho=True, b=True, alpha=True, beta=True, sigma=True, T_name='thetao', S_name='so', z_name='gdept_0'):
     """
     Using the xarray dataset ds and the common NEMO notations,
     compute all the different analyzes and return a new dataset containing these analyzes.
@@ -118,9 +118,9 @@ def nemo_wrap(ds, rho=True, b=True, alpha=True, beta=True, sigma=True):
         rn_nu=ds.get("rn_nu", default=rn_nu),
     )
 
-    T = ds.thetao
-    S = ds.so
-    z = ds.gdept_0
+    T = ds[T_name]
+    S = ds[S_name]
+    z = ds[z_name]
 
     out = xr.Dataset()
 
@@ -138,6 +138,8 @@ def nemo_wrap(ds, rho=True, b=True, alpha=True, beta=True, sigma=True):
             },
         )
         out = out.expand_dims({"p_ref": p_ref})
+    else:
+        out['p_ref'] = ds['p_ref']
 
     if rho:
         out["rho"] = compute_rho(T, S, z=out.p_ref, **nameos)
