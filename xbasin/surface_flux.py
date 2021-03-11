@@ -68,10 +68,14 @@ def nemo_wrap(ds, heat=True, salt=True, b=True, spicyness=True, fci=True):
     alpha = ds["alpha"]
     if "p_ref" in alpha.dims:
         alpha = alpha.isel(p_ref=0)
+    if "z_c" in alpha.dims:
+        alpha = alpha.isel(z_c=0)
     saltflx = ds["saltflx"]
     beta = ds["beta"]
     if "p_ref" in beta.dims:
         beta = beta.isel(p_ref=0)
+    if "z_c" in beta.dims:
+        beta = beta.isel(z_c=0)
 
     if heat:
         out["F_b_heat"] = compute_buoyancy_surface_flux_heat(qt, alpha)
@@ -107,7 +111,7 @@ def nemo_wrap(ds, heat=True, salt=True, b=True, spicyness=True, fci=True):
         out["F_b_spicy"].attrs.update(
             {
                 "standard_name": "surface_buoyancy_flux_spicy",
-                "long_name": "surface buoyancy flux due to spicyness",
+                "long_name": "surface spicyness flux",
                 "units": "m2/s3",
             }
         )
