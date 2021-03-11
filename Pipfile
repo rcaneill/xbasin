@@ -4,15 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-
-[packages]
 pytest = "*"
 xarray = "*"
 xgcm = "*"
-ipympl = "*"
 netcdf4 = "*"
 twine = "*"
+dask = {extras = ["array"],version = "*"}
 xbasin = {editable = true, path = "."}
+jupyterlab = "*"
+
+[packages]
 
 [requires]
 python_version = "3.8"
